@@ -2,9 +2,11 @@ package com.vlad.fitnesstracker.service;
 
 import com.vlad.fitnesstracker.model.Person;
 
+import javax.swing.*;
+
 public class BMI {
     public static String calculateBMI(Person person) {
-        double heightInMeters = person.getHeight() / 100; // Convert cm to meters
+        double heightInMeters = person.getHeight() / 100;
         double bmi = person.getWeight() / (heightInMeters * heightInMeters);
 
         String classification;
@@ -23,13 +25,11 @@ public class BMI {
 
     public static double calculateBMR(Person person) {
         double bmr;
-
         if (person.getGender().equalsIgnoreCase("M")) {
             bmr = 10 * person.getWeight() + 6.25 * person.getHeight() - 5 * person.getAge() + 5;
         } else {
             bmr = 10 * person.getWeight() + 6.25 * person.getHeight() - 5 * person.getAge() - 161;
         }
-
         return bmr;
     }
 
@@ -40,7 +40,7 @@ public class BMI {
     }
 
     private static double getActivityMultiplier(String activityLevel) {
-        switch (activityLevel.toLowerCase()) {
+        switch (activityLevel) {
             case "1":
                 return 1.2;
             case "2":
@@ -52,8 +52,24 @@ public class BMI {
             case "5":
                 return 1.9;
             default:
-                System.out.println("Invalid activity level. Assuming sedentary.");
                 return 1.2;
         }
+    }
+
+    public static void showBMICalculation(Person person) {
+        String result = calculateBMI(person);
+        JOptionPane.showMessageDialog(null, result, "BMI Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void showBMRCalculation(Person person) {
+        double bmr = calculateBMR(person);
+        String result = String.format("Your BMR is: %.2f", bmr);
+        JOptionPane.showMessageDialog(null, result, "BMR Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void showMaintenanceCaloriesCalculation(Person person) {
+        double maintenanceCalories = calculateMaintenanceCalories(person);
+        String result = String.format("Your maintenance calories are: %.2f", maintenanceCalories);
+        JOptionPane.showMessageDialog(null, result, "Maintenance Calories Result", JOptionPane.INFORMATION_MESSAGE);
     }
 }

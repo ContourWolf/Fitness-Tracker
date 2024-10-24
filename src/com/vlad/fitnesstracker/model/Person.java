@@ -1,31 +1,36 @@
 package com.vlad.fitnesstracker.model;
 
 public class Person {
+    private String name;
     private int age;
-    private double weight; // in kg
-    private double height; // in cm
-    private String gender; // M or F
-    private String activityLevel; // Activity level string
+    private double height;
+    private double weight;
+    private String gender;
+    private String activityLevel;
 
-    public Person(int age, double weight, double height, String gender, String activityLevel) {
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
+    public Person(String gender, int age, double height, double weight, String activityLevel) {
         this.gender = gender;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
         this.activityLevel = activityLevel;
     }
 
-    // Getters
+
+    public String getName() {
+        return name;
+    }
+
     public int getAge() {
         return age;
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
     public double getHeight() {
         return height;
+    }
+
+    public double getWeight() {
+        return weight;
     }
 
     public String getGender() {
@@ -36,17 +41,20 @@ public class Person {
         return activityLevel;
     }
 
-    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public void setGender(String gender) {
